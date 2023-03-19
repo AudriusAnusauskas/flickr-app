@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getPhotos } from "../../services/photo.service";
+import Loader from "../Loader/Loader";
 import Photo from "../Photo/Photo";
 
 export interface FlickrPhoto {
@@ -12,20 +13,26 @@ export interface FlickrPhoto {
 
 const Gallery: React.FC = () => {
   const [photos, setPhotos] = useState<FlickrPhoto[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchPhotos = async () => {
       const newPhotos = await getPhotos("rockconcert");
       setPhotos(newPhotos);
+      setIsLoading(false);
     };
     fetchPhotos();
   }, []);
 
   return (
     <div>
-      {photos.map((photo) => (
-        <Photo key={photo.id} photo={photo} />
-      ))}
+      {isLoading ? (
+        <div>
+          <Loader />
+        </div>
+      ) : (
+        photos.map((photo) => <Photo key={photo.id} photo={photo} />)
+      )}
     </div>
   );
 };
