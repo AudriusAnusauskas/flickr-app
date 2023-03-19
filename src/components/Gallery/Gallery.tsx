@@ -3,12 +3,15 @@ import { getPhotos } from "../../services/photo.service";
 import Loader from "../Loader/Loader";
 import Photo from "../Photo/Photo";
 
+import styles from "./Gallery.module.css";
+
 export interface FlickrPhoto {
   id: string;
   secret: string;
   server: string;
   farm: number;
   title: string;
+  authorname: string;
 }
 
 const Gallery: React.FC = () => {
@@ -17,7 +20,7 @@ const Gallery: React.FC = () => {
 
   useEffect(() => {
     const fetchPhotos = async () => {
-      const newPhotos = await getPhotos("rockconcert");
+      const newPhotos = await getPhotos("lietuva");
       setPhotos(newPhotos);
       setIsLoading(false);
     };
@@ -25,7 +28,7 @@ const Gallery: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.galleryContainer}>
       {isLoading ? (
         <div>
           <Loader />

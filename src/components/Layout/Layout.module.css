@@ -1,3 +1,5 @@
-.div {
-  color: blue;
+.layout {
+  width: 1025px;
+  margin: 0 auto;
+  min-height: 100vh;
 }
