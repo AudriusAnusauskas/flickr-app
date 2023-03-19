@@ -5,7 +5,7 @@ import style from "./Layout.module.css";
 
 const Layout: React.FC = () => {
   return (
-    <div className={style.div}>
+    <div className={style.layout}>
       <Gallery />
     </div>
   );

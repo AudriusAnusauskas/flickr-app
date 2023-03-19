@@ -3,12 +3,15 @@ import { getPhotos } from "../../services/photo.service";
 import Loader from "../Loader/Loader";
 import Photo from "../Photo/Photo";
 
+import styles from "./Gallery.module.css";
+
 export interface FlickrPhoto {
   id: string;
   secret: string;
   server: string;
   farm: number;
   title: string;
+  authorname: string;
 }
 
 const Gallery: React.FC = () => {
@@ -25,9 +28,9 @@ const Gallery: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.galleryContainer}>
       {isLoading ? (
-        <div>
+        <div className={styles.loaderContainer}>
           <Loader />
         </div>
       ) : (
