@@ -1,0 +1,14 @@
+import React from "react";
+import Gallery from "../Gallery/Gallery";
+
+import style from "./Layout.module.css";
+
+const Layout: React.FC = () => {
+  return (
+    <div className={style.div}>
+      <Gallery />
+    </div>
+  );
+};
+
+export default Layout;
