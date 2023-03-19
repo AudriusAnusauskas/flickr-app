@@ -20,7 +20,7 @@ const Gallery: React.FC = () => {
 
   useEffect(() => {
     const fetchPhotos = async () => {
-      const newPhotos = await getPhotos("lietuva");
+      const newPhotos = await getPhotos("rockconcert");
       setPhotos(newPhotos);
       setIsLoading(false);
     };
@@ -30,7 +30,7 @@ const Gallery: React.FC = () => {
   return (
     <div className={styles.galleryContainer}>
       {isLoading ? (
-        <div>
+        <div className={styles.loaderContainer}>
           <Loader />
         </div>
       ) : (

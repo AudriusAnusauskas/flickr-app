@@ -5,5 +5,8 @@
   grid-template-columns: repeat(3, 1fr);
   margin-bottom: 95px;
   padding: 30px;
-  background-color: #e7e7e7;
+}
+
+.loaderContainer {
+  width: 100vw;
 }

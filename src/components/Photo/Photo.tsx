@@ -15,7 +15,9 @@ const Photo: React.FC<PhotoProps> = ({ photo }) => {
         key={photo.id}
       />
       <div className={styles.overlay}>
-        <h2>{photo.title}</h2>
+        <h2>
+          {photo.title.length > 60 ? photo.title.substring(0, 60) : photo.title}
+        </h2>
         <span className={styles.underline}></span>
         <h3>{photo.authorname}</h3>
         <button>Favourite</button>
