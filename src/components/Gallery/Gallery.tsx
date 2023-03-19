@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Photo from "../Photo/Photo";
 
 export interface FlickrPhoto {
   id: string;
@@ -31,11 +32,7 @@ const Gallery: React.FC = () => {
   return (
     <div>
       {photos.map((photo) => (
-        <img
-          key={photo.id}
-          src={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
-          alt={photo.title}
-        />
+        <Photo key={photo.id} photo={photo} />
       ))}
     </div>
   );
