@@ -17,14 +17,34 @@ export interface FlickrPhoto {
 const Gallery: React.FC = () => {
   const [photos, setPhotos] = useState<FlickrPhoto[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
+    console.log("before fetchPhotos", page);
+
     const fetchPhotos = async () => {
-      const newPhotos = await getPhotos("rockconcert");
-      setPhotos(newPhotos);
+      const newPhotos = await getPhotos("metalmusic", page);
+      setPhotos((prevPhotos) => [...prevPhotos, ...newPhotos]);
       setIsLoading(false);
     };
     fetchPhotos();
+  }, [page]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop >=
+        document.documentElement.scrollHeight
+      ) {
+        setPage((prevPage) => prevPage + 1);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
@@ -34,7 +54,7 @@ const Gallery: React.FC = () => {
           <Loader />
         </div>
       ) : (
-        photos.map((photo) => <Photo key={photo.id} photo={photo} />)
+        photos.map((photo, index) => <Photo key={index} photo={photo} />)
       )}
     </div>
   );

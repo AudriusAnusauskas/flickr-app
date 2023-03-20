@@ -2,10 +2,13 @@ import { FlickrPhoto } from "../components/Gallery/Gallery";
 
 const API_KEY = process.env.REACT_APP_FLICKR_API_KEY;
 
-export const getPhotos = async (tags: string): Promise<FlickrPhoto[]> => {
+export const getPhotos = async (
+  tags: string,
+  page: number
+): Promise<FlickrPhoto[]> => {
   try {
     const response = await fetch(
-      `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${API_KEY}&tags=${tags}&per_page=35&page=1&format=json&nojsoncallback=1`
+      `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${API_KEY}&tags=${tags}&per_page=36&page=${page}&format=json&nojsoncallback=1`
     );
     const data = await response.json();
     const photos = data.photos.photo;
