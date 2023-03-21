@@ -1,4 +1,5 @@
 import { FlickrPhoto } from "../Gallery/Gallery";
+import { useState } from "react";
 
 import styles from "./Photo.module.css";
 
@@ -7,6 +8,19 @@ interface PhotoProps {
 }
 
 const Photo: React.FC<PhotoProps> = ({ photo }) => {
+  const [isFavorited, setIsFavorited] = useState(
+    localStorage.getItem(photo.id) !== null
+  );
+
+  const handleFavoriteClick = () => {
+    if (!isFavorited) {
+      localStorage.setItem(photo.id, "true");
+    } else {
+      localStorage.removeItem(photo.id);
+    }
+    setIsFavorited(!isFavorited);
+  };
+
   return (
     <div className={styles.cardContainer}>
       <img
@@ -20,7 +34,12 @@ const Photo: React.FC<PhotoProps> = ({ photo }) => {
         </h2>
         <span className={styles.underline}></span>
         <h3>{photo.authorname}</h3>
-        <button>Favourite</button>
+        <button
+          onClick={handleFavoriteClick}
+          className={isFavorited ? styles.favorited : styles.notFavorited}
+        >
+          {isFavorited ? "Favourites -" : "Favourites"}
+        </button>
       </div>
     </div>
   );

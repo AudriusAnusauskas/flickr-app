@@ -20,8 +20,6 @@ const Gallery: React.FC = () => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    console.log("before fetchPhotos", page);
-
     const fetchPhotos = async () => {
       const newPhotos = await getPhotos("metalmusic", page);
       setPhotos((prevPhotos) => [...prevPhotos, ...newPhotos]);
