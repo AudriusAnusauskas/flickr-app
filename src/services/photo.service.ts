@@ -1,4 +1,11 @@
-import { FlickrPhoto } from "../components/Gallery/Gallery";
+export interface FlickrPhoto {
+  id: string;
+  secret: string;
+  server: string;
+  farm: number;
+  title: string;
+  authorname: string;
+}
 
 const API_KEY = process.env.REACT_APP_FLICKR_API_KEY;
 

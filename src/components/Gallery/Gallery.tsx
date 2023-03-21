@@ -1,18 +1,9 @@
 import { useState, useEffect } from "react";
-import { getPhotos } from "../../services/photo.service";
+import { getPhotos, FlickrPhoto } from "../../services/photo.service";
 import Loader from "../Loader/Loader";
 import Photo from "../Photo/Photo";
 
 import styles from "./Gallery.module.css";
-
-export interface FlickrPhoto {
-  id: string;
-  secret: string;
-  server: string;
-  farm: number;
-  title: string;
-  authorname: string;
-}
 
 const Gallery: React.FC = () => {
   const [photos, setPhotos] = useState<FlickrPhoto[]>([]);
@@ -21,7 +12,7 @@ const Gallery: React.FC = () => {
 
   useEffect(() => {
     const fetchPhotos = async () => {
-      const newPhotos = await getPhotos("metalmusic", page);
+      const newPhotos = await getPhotos("rockconcert", page);
       setPhotos((prevPhotos) => [...prevPhotos, ...newPhotos]);
       setIsLoading(false);
     };
@@ -39,7 +30,6 @@ const Gallery: React.FC = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
