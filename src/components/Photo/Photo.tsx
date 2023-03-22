@@ -38,7 +38,7 @@ const Photo: React.FC<PhotoProps> = ({ photo }) => {
           onClick={handleFavoriteClick}
           className={isFavorited ? styles.favorited : styles.notFavorited}
         >
-          {isFavorited ? "Unfavorite" : "Favourites"}
+          {isFavorited ? "Unfavourite" : "Favourite"}
         </button>
       </div>
     </div>

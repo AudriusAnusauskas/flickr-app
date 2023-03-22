@@ -54,7 +54,7 @@ h3 {
   background: none;
   color: #fff;
   border: 1px solid #fff;
-  height: 30px;
+  height: 40px;
   width: 100px;
   border-radius: 20px;
   cursor: pointer;
@@ -66,7 +66,7 @@ h3 {
   color: #000;
   background-color: #fff;
   border: 1px solid #fff;
-  height: 30px;
+  height: 40px;
   width: 100px;
   border-radius: 20px;
   cursor: pointer;
@@ -85,5 +85,18 @@ h3 {
 @media only screen and (max-width: 680px) {
   .cardContainer {
     max-height: 250px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  h2 {
+    font-size: 16px;
+  }
+  h3 {
+    font-size: 14px;
+  }
+  .notFavorited,
+  .favorited {
+    width: 80px;
+    height: 30px;
   }
 }
