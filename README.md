@@ -42,8 +42,8 @@ The main features of the app include:
  The app consists of several components:
  
  ### `Layout` component
- It's purpose is to hold and display the structure of the layut of the app. /
- Currently it contains only `Gallery` component, but if app is to be further developed, there is a possibility to add more elements like header, footer, sidebar, etc.
+ It's purpose is to hold and display the structure of the layut of the app. \
+ Currently it contains only `Gallery` component, but if the app is to be further developed, there is a possibility to add more elements like header, footer, sidebar, etc.
  
  ### `Gallery` component
  The purpose of this component is to fetch and display a grid of photo items:
@@ -56,7 +56,7 @@ The main features of the app include:
     };
   ```
     
-  And the photos are fetched using a `photo.service` which includes the function function `getPhotos()` which makes the API call.
+  And the photos are fetched using a `photo.service` which includes the function function `getPhotos()` which makes the API calls.
     
  `Gallery` component also has infinite scroll implemented:
  
@@ -72,13 +72,13 @@ The main features of the app include:
  ```
  
  ### `Loader` component
- This component contains animated spinnig wheel, which is displayed when the pgoto gallery is loading.
+ This component contains animated spinnig wheel, which is displayed when the photo gallery is loading.
  
  ### `Photo` component
  This component displays each photo item as a card in a gallery grid. It displays the info of each photo on a darker overlay background when hovered. The info it   displays contains the title and the author of the photo. 
  It is worth to mention that the initial API call to get the list of photos only contains one of the required parameters - the title. The additional info abut the author of the photo is obtained by additional API call using `getInfo` method by the id of the photo.
- The function of getting the photos and info about them is `getPhotos` and it is written in the `photo.service`
- `Photo` component also includes the possibility for the used to Favourite/Unfavourite the photo. The Favourited photos are stored in browser's local storage, this way the state of Favourited photo is not lost when reloading the page. This functionality is implemented this way:
+ The function of getting the photos and info about them is `getPhotos` and it is written in the `photo.service`.\
+ `Photo` component also includes the possibility for a user to Favourite/Unfavourite the photo. The Favourited photos are stored in browser's local storage, this way the state of Favourited photo is not lost when reloading the page. This functionality is implemented this way:
  
  ```
  const handleFavoriteClick = () => {
