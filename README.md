@@ -1,46 +1,104 @@
-# Getting Started with Create React App
+# Flickr photo-gallery app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple react app that displays a gallery of photos from Flickr via API.
+It allows users to browse through the gallery, and choose favorite photos. 
+The gallery has infinite scroll implemented. This means that when a user scrolls to the end on the web page, next pages load automatically.
+The app is responsive, it is designed to be browsed on desktop computers, tablets and mobile phone devices.
 
-## Available Scripts
+This app was created with 'create-react-app'.
 
-In the project directory, you can run:
+## Installation
+
+To install the app, clone the repository and run the following command:
+
+### `npm install`
+
+this will install all necessery dependencies and the app will be ready to run.
+
+## Running the App
+
+to run the app, use the following command:
 
 ### `npm start`
 
-Runs the app in the development mode.\
+This will start the app in the development mode.
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The page will reload if you make edits.
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The main features of the app include:
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+  - Displaying the list of photos
+  - Displaying info of each photo when hovering (info includes title and author)
+  - The ability to Favourite/Unfavourite the photo
+  - Infinite scroll
+  - Responsive design
+  
+ ## More detailed info about the app
+ 
+ The app consists of several components:
+ 
+ ### `Layout` component
+ It's purpose is to hold and display the structure of the layut of the app. /
+ Currently it contains only `Gallery` component, but if app is to be further developed, there is a possibility to add more elements like header, footer, sidebar, etc.
+ 
+ ### `Gallery` component
+ The purpose of this component is to fetch and display a grid of photo items:
+ 
+  ``` 
+      const fetchPhotos = async () => {
+      const newPhotos = await getPhotos("rockconcert", page);
+      setPhotos((prevPhotos) => [...prevPhotos, ...newPhotos]);
+      setIsLoading(false);
+    };
+  ```
+    
+  And the photos are fetched using a `photo.service` which includes the function function `getPhotos()` which makes the API call.
+    
+ `Gallery` component also has infinite scroll implemented:
+ 
+ ```
+ const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop + 1 >=
+        document.documentElement.scrollHeight
+      ) {
+        setPage((prevPage) => prevPage + 1);
+      }
+    };
+ ```
+ 
+ ### `Loader` component
+ This component contains animated spinnig wheel, which is displayed when the pgoto gallery is loading.
+ 
+ ### `Photo` component
+ This component displays each photo item as a card in a gallery grid. It displays the info of each photo on a darker overlay background when hovered. The info it   displays contains the title and the author of the photo. 
+ It is worth to mention that the initial API call to get the list of photos only contains one of the required parameters - the title. The additional info abut the author of the photo is obtained by additional API call using `getInfo` method by the id of the photo.
+ The function of getting the photos and info about them is `getPhotos` and it is written in the `photo.service`
+ `Photo` component also includes the possibility for the used to Favourite/Unfavourite the photo. The Favourited photos are stored in browser's local storage, this way the state of Favourited photo is not lost when reloading the page. This functionality is implemented this way:
+ 
+ ```
+ const handleFavoriteClick = () => {
+    if (!isFavorited) {
+      localStorage.setItem(photo.id, "true");
+    } else {
+      localStorage.removeItem(photo.id);
+    }
+    setIsFavorited(!isFavorited);
+  };
+  ```
+  
+  ### The responsive design
+  The responsiveness of the app is atchieved with `css` using `media queries`.
+  There are introduced certain breakpoints that corrrespond to the devices this app could be browsed on - Desktop, Tablet, Phone.
+  
+  ### Contributors
+  This app was developed by me, Audrius Anusauskas, as a homework assignment for Web Engineer position at Vinted Engineering Academy.
+  
+  
+ 
+ 
+ 
