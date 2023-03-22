@@ -81,3 +81,9 @@ h3 {
 .cardContainer:hover .overlay {
   opacity: 100;
 }
+
+@media only screen and (max-width: 680px) {
+  .cardContainer {
+    max-height: 250px;
+  }
+}
