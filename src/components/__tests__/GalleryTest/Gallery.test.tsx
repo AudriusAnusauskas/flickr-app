@@ -14,22 +14,30 @@ jest.mock("../../../services/photo.service", () => ({
 
 describe("Gallery component test", () => {
   it("should render a loader when isLoading is true", () => {
-    render(<Gallery />);
+    act(() => {
+      render(<Gallery />);
+    });
     expect(screen.getByTestId("loader")).toBeInTheDocument();
   });
 
   it("should render photos when isLoading is false", () => {
-    render(<Gallery />);
+    act(() => {
+      render(<Gallery />);
+    });
     waitFor(() => expect(screen.getByTestId("photo")).toBeInTheDocument());
   });
 
   test("renders the correct number of Photo components", () => {
-    render(<Gallery />);
+    act(() => {
+      render(<Gallery />);
+    });
     waitFor(() => expect(screen.getAllByTestId("photo")).toHaveLength(1));
   });
 
   test("calls getPhotos with the correct arguments", () => {
-    render(<Gallery />);
+    act(() => {
+      render(<Gallery />);
+    });
     waitFor(() =>
       expect(
         require("../../../services/photo.service").getPhotos
