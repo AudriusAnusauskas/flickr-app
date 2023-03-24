@@ -9,18 +9,12 @@ const Gallery: React.FC = () => {
   const [photos, setPhotos] = useState<FlickrPhoto[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState(12);
+  const [perPage] = useState(24);
   const [allLoaded, setAllLoaded] = useState(false);
 
   useEffect(() => {
     const fetchPhotos = async () => {
-      const startIndex = (page - 1) * perPage;
-      const newPhotos = await getPhotos(
-        "rockconcert",
-        page,
-        perPage,
-        startIndex
-      );
+      const newPhotos = await getPhotos("rockconcert", page, perPage);
       if (!newPhotos || newPhotos.length === 0) {
         setAllLoaded(true);
       } else {
@@ -46,7 +40,7 @@ const Gallery: React.FC = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [allLoaded]);
 
   return (
     <div className={styles.galleryContainer}>
@@ -58,14 +52,10 @@ const Gallery: React.FC = () => {
         <>
           {photos.map((photo, index) => (
             <div data-testid="photo">
-              <Photo key={photo.id} photo={photo} />
+              <Photo key={index} photo={photo} />
             </div>
           ))}
-          {allLoaded && (
-            <div className={styles.messageContainer}>
-              All photos have been loaded.
-            </div>
-          )}
+          {"Loading more photos...."}
         </>
       )}
     </div>
