@@ -12,8 +12,7 @@ const API_KEY = process.env.REACT_APP_FLICKR_API_KEY;
 export const getPhotos = async (
   tags: string,
   page: number,
-  perPage: number,
-  startIndex: number
+  perPage: number
 ): Promise<FlickrPhoto[]> => {
   try {
     const response = await fetch(
