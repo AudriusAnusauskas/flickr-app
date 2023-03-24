@@ -38,11 +38,15 @@ const Gallery: React.FC = () => {
   return (
     <div className={styles.galleryContainer}>
       {isLoading ? (
-        <div className={styles.loaderContainer}>
+        <div data-testid="loader" className={styles.loaderContainer}>
           <Loader />
         </div>
       ) : (
-        photos.map((photo, index) => <Photo key={index} photo={photo} />)
+        photos.map((photo) => (
+          <div key={photo.id} data-testid="photo">
+            <Photo photo={photo} />
+          </div>
+        ))
       )}
     </div>
   );
