@@ -32,8 +32,9 @@ The page will reload if you make edits.
 The main features of the app include:
 
   - Displaying the list of photos
-  - Displaying info of each photo when hovering (info includes title and author)
+  - Displaying the info of each photo when hovering (info includes title and author)
   - The ability to Favourite/Unfavourite the photo
+  - Displaying the list of Favourited photos
   - Infinite scroll
   - Responsive design
   
@@ -43,53 +44,23 @@ The main features of the app include:
  
  ### `Layout` component
  It's purpose is to hold and display the structure of the layut of the app. \
- Currently it contains only `Gallery` component, but if the app is to be further developed, there is a possibility to add more elements like header, footer, sidebar, etc.
+ Currently it contains header and `Gallery`/ `Favourites` components that are rendered interchangably, but if the app is to be further developed, there is a possibility to add more elements like footer, sidebar, etc.
  
  ### `Gallery` component
- The purpose of this component is to fetch and display a grid of photo items:
- 
-  ``` 
-      const fetchPhotos = async () => {
-      const newPhotos = await getPhotos("rockconcert", page);
-      setPhotos((prevPhotos) => [...prevPhotos, ...newPhotos]);
-      setIsLoading(false);
-    };
-  ```
-    
-  And the photos are fetched using a `photo.service` which includes the function function `getPhotos()` which makes the API calls.
-    
- `Gallery` component also has infinite scroll implemented:
- 
- ```
- const handleScroll = () => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop + 1 >=
-        document.documentElement.scrollHeight
-      ) {
-        setPage((prevPage) => prevPage + 1);
-      }
-    };
- ```
- 
+ The purpose of this component is to display a grid of photo items.\
+ This component has a `fetchPhotos()` function which calls the `getPhotos()` function in `photos.service` by providing 'tags' (keyword, which is hardcoded at the moment and it is possible to implement search functionality when developing the app further), page number and items per page.  It then gets a response - the JSON with the necessery data to render the photos and passes it as props to the `Photo` component that renders each photo.
+ `Gallery` component also has infinite scroll implemented.
+  
  ### `Loader` component
- This component contains animated spinnig wheel, which is displayed when the photo gallery is loading.
+ This component is used inside the `Gallery` component and contains animated spinnig wheel, which is displayed when the photo gallery is loading.
  
  ### `Photo` component
- This component displays each photo item as a card in a gallery grid. It displays the info of each photo on a darker overlay background when hovered. The info it   displays contains the title and the author of the photo. 
- It is worth to mention that the initial API call to get the list of photos only contains one of the required parameters - the title. The additional info abut the author of the photo is obtained by additional API call using `getInfo` method by the id of the photo.
- The function of getting the photos and info about them is `getPhotos` and it is written in the `photo.service`.\
- `Photo` component also includes the possibility for a user to Favourite/Unfavourite the photo. The Favourited photos are stored in browser's local storage, this way the state of Favourited photo is not lost when reloading the page. This functionality is implemented this way:
+ This component is used in `Gallery` and `Favourites` components. It displays each photo item as a card in a gallery grid. It also displays the info of each photo on a darker overlay background when hovered. The info it displays contains the title and the author of the photo. 
+ It is worth to mention that the initial API call in `photo.service` that gets the list of photos only contains one of the required parameters - the title. The additional info about the author of the photo is obtained by additional API call using `getInfo` method by the id of each of the photos.
+ `Photo` component also includes the possibility for a user to Favourite/Unfavourite the photo. The Favourited photos are stored in browser's local storage, this way the state of Favourited photo is not lost when reloading the page. The list of favourited photos is displayed in `Favourites` component.
  
- ```
- const handleFavoriteClick = () => {
-    if (!isFavorited) {
-      localStorage.setItem(photo.id, "true");
-    } else {
-      localStorage.removeItem(photo.id);
-    }
-    setIsFavorited(!isFavorited);
-  };
-  ```
+ ### `Favourites` component
+ This component displays the gallery of favourited photos. The Id of each favourited pfoto is stored in browser's local storage, and this component uses this Id to fetch the data of each favourited photo and pass it as props to `Photo` component to then be displayed.
   
   ### The responsive design
   The responsiveness of the app is atchieved with `css` using `media queries`.
