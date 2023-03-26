@@ -49,7 +49,7 @@ The main features of the app include:
  ### The app consists of several components:
  
  ### `Layout` component
- It's purpose is to hold and display the structure of the layut of the app. \
+ It's purpose is to hold and display the structure of the layout of the app. \
  Currently it contains header and `Gallery`/ `Favourites` components that are rendered interchangably, but if the app is to be further developed, there is a possibility to add more elements like footer, sidebar, etc.
  
  ### `Gallery` component
@@ -62,7 +62,7 @@ The main features of the app include:
  
  ### `Photo` component
  This component is used in `Gallery` and `Favourites` components. It displays each photo item as a card in a gallery grid. It also displays the info of each photo on a darker overlay background when hovered. The info it displays contains the title and the author of the photo. 
- It is worth to mention that the initial API call in `photo.service` that gets the list of photos only contains one of the required parameters - the title. The additional info about the author of the photo is obtained by additional API call using `getInfo` method by the id of each of the photos.
+ It is worth to mention that the initial API call in `photo.service` that gets the list of photos only contains one of the required parameters - the title. The additional info about the author of the photo is obtained by additional API call using `getInfo` api method by the id of each of the photos.
  `Photo` component also includes the possibility for a user to Favourite/Unfavourite the photo. The Favourited photos are stored in browser's local storage, this way the state of Favourited photo is not lost when reloading the page. The list of favourited photos is displayed in `Favourites` component.
  
  ### `Favourites` component
@@ -73,7 +73,7 @@ The main features of the app include:
   There are introduced certain breakpoints that corrrespond to the devices this app could be browsed on - Desktop, Tablet, Phone.
   
   ### Contributors
-  This app was developed by me, Audrius Anusauskas, as a homework assignment for Web Engineer position at Vinted Engineering Academy.
+  This app was developed by me, Audrius Anusauskas, as a homework assignment for a Web Engineer position at Vinted Engineering Academy.
   
   
  
