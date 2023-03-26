@@ -46,7 +46,7 @@ The main features of the app include:
   
  ## More detailed info about the app
  
- The app consists of several components:
+ ### The app consists of several components:
  
  ### `Layout` component
  It's purpose is to hold and display the structure of the layut of the app. \
