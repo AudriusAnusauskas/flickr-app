@@ -73,7 +73,7 @@ The main features of the app include:
   There are introduced certain breakpoints that corrrespond to the devices this app could be browsed on - Desktop, Tablet, Phone.
   
   ### Contributors
-  This app was developed by me, Audrius Anusauskas, as a homework assignment for a Web Engineer position at Vinted Engineering Academy.
+  This app was developed by me, Audrius Anusauskas, as a homework assignment for a Web Engineer position at xxxx Engineering Academy.
   
   
  
